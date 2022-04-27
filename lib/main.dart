@@ -24,8 +24,9 @@ class MyApp extends StatelessWidget {
       ),
       home: const HomePage(),
       routes: {
-        '/login': (context) => const LoginView(),
-        '/register': (context) => const RegisterView(),
+        '/login/': (context) => const LoginView(),
+        '/register/': (context) => const RegisterView(),
+        '/notes/': (context) => const NotesView(),
       },
     );
   }
@@ -53,7 +54,6 @@ class HomePage extends StatelessWidget {
             } else {
               return const LoginView();
             }
-            return const Text('done');
           default:
             return const CircularProgressIndicator();
         }
@@ -86,7 +86,7 @@ class _NotesViewState extends State<NotesView> {
                   if (shouldLogout) {
                     await FirebaseAuth.instance.signOut();
                     Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/login',
+                      '/login/',
                       (_) => false,
                     );
                   }
